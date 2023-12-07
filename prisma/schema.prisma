@@ -1,0 +1,23 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Transaction {
+  id                 Int      @id @default(autoincrement())
+  type               String
+  status             String
+  amount             String
+  currency           String
+  mobileMoneyProvider String
+  reference          String
+  createdAt          DateTime @default(now())
+}
+
