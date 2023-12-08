@@ -132,7 +132,7 @@ function TransactionHistory({ accountType }: { accountType: AccountType }) {
 
     // Fetch Transactions
     const fetchTransactions = () => {
-        fetch('/transactions-api/api')
+        fetch('/transactions-5/api')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -156,7 +156,7 @@ function TransactionHistory({ accountType }: { accountType: AccountType }) {
     // Post New Transaction
     const postNewTransaction = async (newTransactionData: Omit<Transaction, 'id' | 'createdAt'>) => {
         try {
-            const response = await fetch('/transactions-api/api', {
+            const response = await fetch('/transactions-5/api', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
