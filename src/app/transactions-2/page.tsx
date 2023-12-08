@@ -72,7 +72,7 @@ const testTransactions: Transaction[] = [
 function TransactionRow({ transaction }: { transaction: Transaction }) {
     const isDeposit = transaction.type === TransactionType.DEPOSIT
 
-    const date = new Date(transaction.createdAt).toLocaleDateString('eu', {
+    const date = new Date(transaction.createdAt).toLocaleDateString('en', {
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
