@@ -23,11 +23,6 @@ enum TransactionStatus {
     CANCELLED = 'CANCELLED'
 }
 
-export enum AccountType {
-    CHECKING = 'CHECKING',
-    SAVINGS = 'SAVINGS'
-}
-
 interface Transaction {
     id: number;
     type: TransactionType;
@@ -80,128 +75,14 @@ function TransactionRow() {
     );
 }
 
-function TransactionHistory({ accountType }: { accountType: AccountType }) {
-
-    const [showModal, setShowModal] = useState(false);
-    const [errors, setErrors] = useState({
-        type: '',
-        status: '',
-        amount: '',
-        currency: '',
-        mobileMoneyProvider: '',
-        reference: '',
-        createdAt: ''
-    });
-
-    const handleChange = (field: keyof Transaction, value: string) => {
-        setErrors({ ...errors, [field]: '' });
-    };
-
-    const validateForm = () => {
-        let isValid = true;
-        let newErrors = { ...errors };
-
-        setErrors(newErrors);
-        return isValid;
-    };
-
-    const handleAddTransaction = () => {
-        if (validateForm()) {
-            setShowModal(false);
-            setErrors({
-                type: '',
-                status: '',
-                amount: '',
-                currency: '',
-                mobileMoneyProvider: '',
-                reference: '',
-                createdAt: ''
-            }); // Reset errors
-        }
-    };
+function TransactionHistory() {
 
     return (
         <>
             <Headline text={"Header"} menu />
-
                 <div>
                     <TransactionRow />
-                    <button
-                        className="self-end mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold h-12 w-12 rounded-full"
-                        onClick={() => setShowModal(true)}
-                    >+
-                    </button>
                 </div>
-
-            {showModal && (
-                <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
-                    <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-                        <h3 className="text-lg font-bold">Add New Transaction</h3>
-                        <input
-                            type="text"
-                            placeholder="Type"
-                            className="w-full p-2 my-2 border rounded"
-                            onChange={(e) => handleChange('type', e.target.value)}
-                        />
-                        {errors.type && <p className="text-red-500 text-xs">{errors.type}</p>}
-                        <input
-                            type="text"
-                            placeholder="Status"
-                            className="w-full p-2 my-2 border rounded"
-                            onChange={(e) => handleChange('status', e.target.value)}
-                        />
-                        {errors.status && <p className="text-red-500 text-xs">{errors.status}</p>}
-                        <input
-                            type="text"
-                            placeholder="Amount"
-                            className="w-full p-2 my-2 border rounded"
-                            onChange={(e) => handleChange('amount', e.target.value)}
-                        />
-                        {errors.amount && <p className="text-red-500 text-xs">{errors.amount}</p>}
-                        <input
-                            type="text"
-                            placeholder="Currency"
-                            className="w-full p-2 my-2 border rounded"
-                            onChange={(e) => handleChange('currency', e.target.value)}
-                        />
-                        {errors.currency && <p className="text-red-500 text-xs">{errors.currency}</p>}
-                        <input
-                            type="text"
-                            placeholder="mobileMoneyProvider"
-                            className="w-full p-2 my-2 border rounded"
-                            onChange={(e) => handleChange('mobileMoneyProvider', e.target.value)}
-                        />
-                        {errors.mobileMoneyProvider && <p className="text-red-500 text-xs">{errors.mobileMoneyProvider}</p>}
-                        <input
-                            type="text"
-                            placeholder="reference"
-                            className="w-full p-2 my-2 border rounded"
-                            onChange={(e) => handleChange('reference', e.target.value)}
-                        />
-                        {errors.reference && <p className="text-red-500 text-xs">{errors.reference}</p>}
-                        <input
-                            type="date"
-                            className="w-full p-2 my-2 border rounded"
-                            onChange={(e) => handleChange('createdAt', e.target.value)}
-                        />
-                        {errors.createdAt && <p className="text-red-500 text-xs">{errors.createdAt}</p>}
-                        <div className="flex justify-end">
-                            <button
-                                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2"
-                                onClick={() => setShowModal(false)}
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-                                onClick={handleAddTransaction}
-                            >
-                                Add Transaction
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
         </>
     );
 }

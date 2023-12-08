@@ -34,11 +34,6 @@ enum TransactionStatus {
     CANCELLED = 'CANCELLED'
 }
 
-export enum AccountType {
-    CHECKING = 'CHECKING',
-    SAVINGS = 'SAVINGS'
-}
-
 interface Transaction {
     id: number;
     type: TransactionType;
@@ -74,7 +69,7 @@ const testTransactions: Transaction[] = [
 ];
 
 
-function TransactionRow({ transaction, accountType }: { transaction: Transaction; accountType: AccountType }) {
+function TransactionRow({ transaction }: { transaction: Transaction }) {
     const isDeposit = transaction.type === TransactionType.DEPOSIT
 
     const date = new Date(transaction.createdAt).toLocaleDateString('eu', {
@@ -106,7 +101,7 @@ function TransactionRow({ transaction, accountType }: { transaction: Transaction
     );
 }
 
-function TransactionHistory({ accountType }: { accountType: AccountType }) {
+function TransactionHistory() {
 
     const [showModal, setShowModal] = useState(false);
     const [errors, setErrors] = useState({
