@@ -34,11 +34,6 @@ enum TransactionStatus {
     CANCELLED = 'CANCELLED'
 }
 
-export enum AccountType {
-    CHECKING = 'CHECKING',
-    SAVINGS = 'SAVINGS'
-}
-
 interface Transaction {
     id: number;
     type: TransactionType;
@@ -74,10 +69,10 @@ const testTransactions: Transaction[] = [
 ];
 
 
-function TransactionRow({ transaction, accountType }: { transaction: Transaction; accountType: AccountType }) {
+function TransactionRow({ transaction }: { transaction: Transaction }) {
     const isDeposit = transaction.type === TransactionType.DEPOSIT
 
-    const date = new Date(transaction.createdAt).toLocaleDateString('eu', {
+    const date = new Date(transaction.createdAt).toLocaleDateString('en', {
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
@@ -106,7 +101,7 @@ function TransactionRow({ transaction, accountType }: { transaction: Transaction
     );
 }
 
-function TransactionHistory({ accountType }: { accountType: AccountType }) {
+function TransactionHistory() {
 
     const [transactions, setTransactions] = useState<Transaction[]>(testTransactions);
     const [newTransaction, setNewTransaction] = useState(
@@ -205,7 +200,7 @@ function TransactionHistory({ accountType }: { accountType: AccountType }) {
                     {!!transactions &&
                         !!transactions?.length &&
                         transactions.map(t => (
-                            <TransactionRow key={t.id} transaction={t} accountType={accountType} />
+                            <TransactionRow key={t.id} transaction={t} />
                         ))}
                     {!!transactions && !transactions?.length && <p className="text-center text-blue-gray">No transactions yet</p>}
                     <button

@@ -145,14 +145,19 @@ function TransactionHistory() {
         <>
             <Headline text={"Header"} menu />
 
-                <div className="mt-10 flex w-full flex-col items-center justify-center">
-                    <div>Transaction Row</div>
-                    <button
-                        className="self-end mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold h-12 w-12 rounded-full"
-                        onClick={() => setShowModal(true)}
-                    >+
-                    </button>
-                </div>
+            <div className="mt-10 flex w-full flex-col items-center justify-center">
+                {!!testTransactions &&
+                    !!testTransactions?.length &&
+                    testTransactions.map(t => (
+                        <TransactionRow key={t.id} transaction={t} />
+                    ))}
+                {!!testTransactions && !testTransactions?.length && <p className="text-center text-blue-gray">No transactions yet</p>}
+                <button
+                    className="self-end mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold h-12 w-12 rounded-full"
+                    onClick={() => setShowModal(true)}
+                >+
+                </button>
+            </div>
 
             {showModal && (
                 <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
