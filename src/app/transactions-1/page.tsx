@@ -15,18 +15,10 @@ enum TransactionType {
     WITHDRAWAL = 'WITHDRAWAL'
 }
 
-enum TransactionStatus {
-    CREATED = 'CREATED',
-    PENDING = 'PENDING',
-    COMPLETED = 'COMPLETED',
-    FAILED = 'FAILED',
-    CANCELLED = 'CANCELLED'
-}
 
 interface Transaction {
     id: number;
     type: TransactionType;
-    status: TransactionStatus;
     amount: string;
     currency: string;
     mobileMoneyProvider: string;
@@ -38,7 +30,6 @@ const testTransactions: Transaction[] = [
     {
         id: 1,
         type: TransactionType.DEPOSIT,
-        status: TransactionStatus.FAILED,
         amount: '12345.69',
         currency: 'RWF',
         mobileMoneyProvider: 'AIRTEL_GHA',
@@ -48,7 +39,6 @@ const testTransactions: Transaction[] = [
     {
         id: 2,
         type: TransactionType.WITHDRAWAL,
-        status: TransactionStatus.COMPLETED,
         amount: '14.15',
         currency: 'RWF',
         mobileMoneyProvider: 'AIRTEL_GHA',

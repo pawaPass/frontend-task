@@ -26,14 +26,6 @@ enum TransactionType {
     WITHDRAWAL = 'WITHDRAWAL'
 }
 
-enum TransactionStatus {
-    CREATED = 'CREATED',
-    PENDING = 'PENDING',
-    COMPLETED = 'COMPLETED',
-    FAILED = 'FAILED',
-    CANCELLED = 'CANCELLED'
-}
-
 export enum AccountType {
     CHECKING = 'CHECKING',
     SAVINGS = 'SAVINGS'
@@ -42,7 +34,6 @@ export enum AccountType {
 interface Transaction {
     id: number;
     type: TransactionType;
-    status: TransactionStatus;
     amount: string;
     currency: string;
     mobileMoneyProvider: string;
@@ -54,7 +45,6 @@ const testSavingsAccountTransactions: Transaction[] = [
     {
         id: 1,
         type: TransactionType.DEPOSIT,
-        status: TransactionStatus.FAILED,
         amount: '12345.69',
         currency: 'RWF',
         mobileMoneyProvider: 'AIRTEL_GHA',
@@ -64,7 +54,6 @@ const testSavingsAccountTransactions: Transaction[] = [
     {
         id: 2,
         type: TransactionType.WITHDRAWAL,
-        status: TransactionStatus.COMPLETED,
         amount: '14.15',
         currency: 'RWF',
         mobileMoneyProvider: 'AIRTEL_GHA',
@@ -114,7 +103,6 @@ function TransactionHistory({ accountType }: { accountType: AccountType }) {
     const [newTransaction, setNewTransaction] = useState(
         {
             type: '' as TransactionType,
-            status: '' as TransactionStatus,
             amount: '',
             currency: '',
             mobileMoneyProvider: '',
@@ -123,7 +111,6 @@ function TransactionHistory({ accountType }: { accountType: AccountType }) {
 
     const [errors, setErrors] = useState({
         type: '',
-        status: '',
         amount: '',
         currency: '',
         mobileMoneyProvider: '',
@@ -181,7 +168,6 @@ function TransactionHistory({ accountType }: { accountType: AccountType }) {
             setShowModal(false);
             setNewTransaction({
                 type: '' as TransactionType,
-                status: '' as TransactionStatus,
                 amount: '',
                 currency: '',
                 mobileMoneyProvider: '',
@@ -189,7 +175,6 @@ function TransactionHistory({ accountType }: { accountType: AccountType }) {
             }); // Reset form
             setErrors({
                 type: '',
-                status: '',
                 amount: '',
                 currency: '',
                 mobileMoneyProvider: '',
@@ -209,10 +194,6 @@ function TransactionHistory({ accountType }: { accountType: AccountType }) {
         console.log('here3', newTransaction)
         if (!newTransaction.type) {
             newErrors.type = 'Type is required';
-            isValid = false;
-        }
-        if (!newTransaction.status) {
-            newErrors.status = 'Status is required';
             isValid = false;
         }
         if (!newTransaction.amount) {
@@ -266,14 +247,6 @@ function TransactionHistory({ accountType }: { accountType: AccountType }) {
                             onChange={(e) => handleChange('type', e.target.value)}
                         />
                         {errors.type && <p className="text-red-500 text-xs">{errors.type}</p>}
-                        <input
-                            type="text"
-                            placeholder="Status"
-                            className="w-full p-2 my-2 border rounded"
-                            value={newTransaction.status}
-                            onChange={(e) => handleChange('status', e.target.value)}
-                        />
-                        {errors.status && <p className="text-red-500 text-xs">{errors.status}</p>}
                         <input
                             type="text"
                             placeholder="Amount"

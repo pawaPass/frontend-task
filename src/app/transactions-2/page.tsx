@@ -26,18 +26,9 @@ enum TransactionType {
     WITHDRAWAL = 'WITHDRAWAL'
 }
 
-enum TransactionStatus {
-    CREATED = 'CREATED',
-    PENDING = 'PENDING',
-    COMPLETED = 'COMPLETED',
-    FAILED = 'FAILED',
-    CANCELLED = 'CANCELLED'
-}
-
 interface Transaction {
     id: number;
     type: TransactionType;
-    status: TransactionStatus;
     amount: string;
     currency: string;
     mobileMoneyProvider: string;
@@ -49,7 +40,6 @@ const testTransactions: Transaction[] = [
     {
         id: 1,
         type: TransactionType.DEPOSIT,
-        status: TransactionStatus.FAILED,
         amount: '12345.69',
         currency: 'RWF',
         mobileMoneyProvider: 'AIRTEL_GHA',
@@ -59,7 +49,6 @@ const testTransactions: Transaction[] = [
     {
         id: 2,
         type: TransactionType.WITHDRAWAL,
-        status: TransactionStatus.COMPLETED,
         amount: '14.15',
         currency: 'RWF',
         mobileMoneyProvider: 'AIRTEL_GHA',
@@ -106,7 +95,6 @@ function TransactionHistory() {
     const [showModal, setShowModal] = useState(false);
     const [errors, setErrors] = useState({
         type: '',
-        status: '',
         amount: '',
         currency: '',
         mobileMoneyProvider: '',
@@ -131,7 +119,6 @@ function TransactionHistory() {
             setShowModal(false);
             setErrors({
                 type: '',
-                status: '',
                 amount: '',
                 currency: '',
                 mobileMoneyProvider: '',
@@ -170,13 +157,6 @@ function TransactionHistory() {
                             onChange={(e) => handleChange('type', e.target.value)}
                         />
                         {errors.type && <p className="text-red-500 text-xs">{errors.type}</p>}
-                        <input
-                            type="text"
-                            placeholder="Status"
-                            className="w-full p-2 my-2 border rounded"
-                            onChange={(e) => handleChange('status', e.target.value)}
-                        />
-                        {errors.status && <p className="text-red-500 text-xs">{errors.status}</p>}
                         <input
                             type="text"
                             placeholder="Amount"

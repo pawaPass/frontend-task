@@ -36,7 +36,7 @@ This README outlines the tasks for a frontend recruitment challenge focused on b
 ## Task Instructions
 
 ### Task 1: Display Transactions
-1. **URL to Open**: `http://localhost:3000/transaction-1`
+1. **URL to Open**: `http://localhost:3000/transactions-1`
     - **Objective**: Display a list of transactions.
     - **Steps**:
         1. **Hardcoded Transactions**: The page contains a hardcoded `get transactions` API response named `testTransactions`.
@@ -44,21 +44,21 @@ This README outlines the tasks for a frontend recruitment challenge focused on b
         3. **Display All Transactions**: Use the `TransactionRow` component to display all transactions from `testTransactions`.
 
 ### Task 2: Add New Transactions
-1. **URL to Open**: `http://localhost:3000/transaction-2`
+1. **URL to Open**: `http://localhost:3000/transactions-2`
     - **Objective**: Add functionality to create new transactions.
     - **Details**:
         - **TransactionRow Component**: The `TransactionRow` component is already in place.
         - **Add Transaction Form**: Utilize the simple form provided on the page to add new transactions to the list.
 
 ### Task 3: API Routes for Transactions
-1. **URL to Open**: `http://localhost:3000/transaction-3`
+1. **URL to Open**: `http://localhost:3000/transactions-3`
     - **Objective**: Implement API routes for transaction management.
     - **Tasks**:
         - **Get Transactions API**: Write an API route to fetch transactions from the database.
         - **Create Transaction API**: Write an API route to create new transactions in the database.
 
 ### Task 4: Integrate API with Frontend
-1. **URL to Open**: `http://localhost:3000/transaction-4`
+1. **URL to Open**: `http://localhost:3000/transactions-4`
     - **Objective**: Utilize API routes in the frontend.
     - **Steps**:
         - **Existing API Routes**: API routes for getting and creating transactions are already implemented.
@@ -66,7 +66,7 @@ This README outlines the tasks for a frontend recruitment challenge focused on b
         - **Create Transactions**: Implement functionality to create new transactions through the API.
 
 ### Task 5: Code Review
-1. **URL to Open**: `http://localhost:3000/transaction-5`
+1. **URL to Open**: `http://localhost:3000/transactions-5`
     - **Objective**: Review the final code.
     - **Details**: Examine the complete code for the transaction management application and ensure it meets the requirements.
 
