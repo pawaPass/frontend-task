@@ -191,7 +191,6 @@ function TransactionHistory({ accountType }: { accountType: AccountType }) {
     const validateForm = () => {
         let isValid = true;
         let newErrors = { ...errors };
-        console.log('here3', newTransaction)
         if (!newTransaction.type) {
             newErrors.type = 'Type is required';
             isValid = false;

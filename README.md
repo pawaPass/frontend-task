@@ -11,10 +11,10 @@ yarn install
 Then, apply prisma migrations:
 
 ```bash
-npm prisma genereate
-npm prisma migrate dev 
+npm run prisma genereate
+npm run prisma migrate dev 
 # or
-yarn yarn prisma genereate
+yarn prisma genereate
 yarn prisma migrate dev
 ```
 
